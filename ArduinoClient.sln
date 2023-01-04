@@ -5,7 +5,12 @@ VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "ArduinoClient (Package)", "ArduinoClient (Package)\ArduinoClient (Package).wapproj", "{A61C28EA-D999-4A71-9595-E299C4D4C106}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArduinoClient", "ArduinoClient\ArduinoClient.csproj", "{8A1885BD-B363-4702-A3F1-76597825FC68}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArduinoClient", "ArduinoClient\ArduinoClient.csproj", "{8A1885BD-B363-4702-A3F1-76597825FC68}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ArdionoScripts", "ArdionoScripts", "{A399ADCD-A474-483B-93D5-3AE368FC5F6D}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\Документы\Arduino\sketch_jan04a\sketch_jan04a.ino = ..\..\..\..\Документы\Arduino\sketch_jan04a\sketch_jan04a.ino
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
