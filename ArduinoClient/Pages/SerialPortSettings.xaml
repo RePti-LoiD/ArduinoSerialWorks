@@ -1,0 +1,128 @@
+<Page
+    x:Class="ArduinoClient.Pages.SerialPortSettings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ArduinoClient.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    
+    <ScrollViewer>
+        <StackPanel>
+            <Grid Margin="5" CornerRadius="10" Background="{ThemeResource CardBackgroundFillColorDefault}">
+                <TextBox x:Name="PortName" HorizontalAlignment="Left" Header="Port name" Margin="10, 10, 150, 10" KeyDown="TextBox_TextChanged"/>
+
+                <Rectangle VerticalAlignment="Stretch" HorizontalAlignment="Left" Margin="190, 0, 0, 0" Width="0.5px" Stroke="{ThemeResource CardBackgroundFillColorSecondary}"/>
+
+                <RichTextBlock HorizontalAlignment="Left" Margin="200, 10, 10, 10" TextWrapping="WrapWholeWords" Width="350">
+
+                    <Paragraph FontSize="20" FontWeight="Bold">
+                        Serial port name
+                    </Paragraph>
+                    <Paragraph>
+                        <Hyperlink NavigateUri="https://learn.microsoft.com/ru-ru/dotnet/api/system.io.ports.serialport.portname?view=dotnet-plat-ext-7.0">
+                            COM port
+                        </Hyperlink> through which the program will connect to the Arduino system.
+                    </Paragraph>
+                </RichTextBlock>
+
+            </Grid>
+
+
+            <Grid Margin="5" CornerRadius="10" Background="{ThemeResource CardBackgroundFillColorDefault}">
+                <TextBox x:Name="BaudRate" HorizontalAlignment="Left" Header="Baud rate" Margin="10, 10, 150, 10" KeyDown="TextBox_TextChanged"/>
+
+                <Rectangle VerticalAlignment="Stretch" HorizontalAlignment="Left" Margin="190, 0, 0, 0" Width="0.5px" Stroke="{ThemeResource CardBackgroundFillColorSecondary}"/>
+
+                <RichTextBlock HorizontalAlignment="Left" Margin="200, 10, 10, 10" TextWrapping="WrapWholeWords" Width="350">
+
+                    <Paragraph FontSize="20" FontWeight="Bold">
+                        Baud Rate
+                    </Paragraph>
+                    <Paragraph>
+                        <Hyperlink NavigateUri="https://learn.microsoft.com/ru-ru/dotnet/api/system.io.ports.serialport.baudrate?view=dotnet-plat-ext-7.0"> 
+                            Baud rate 
+                        </Hyperlink> for the serial port.
+                    </Paragraph>
+                </RichTextBlock>
+
+            </Grid>
+
+
+            <Grid Margin="5" CornerRadius="10" Background="{ThemeResource CardBackgroundFillColorDefault}">
+                
+                <ComboBox x:Name="ParityComboBox" HorizontalAlignment="Left" Header="Parity" Margin="10, 10, 150, 10" SelectionChanged="ParityComboBox_SelectionChanged"/>
+
+                <Rectangle VerticalAlignment="Stretch" HorizontalAlignment="Left" Margin="190, 0, 0, 0" Width="0.5px" Stroke="{ThemeResource CardBackgroundFillColorSecondary}"/>
+
+                <RichTextBlock HorizontalAlignment="Left" Margin="200, 10, 10, 10" TextWrapping="WrapWholeWords" Width="350">
+
+                    <Paragraph FontSize="20" FontWeight="Bold">
+                        Parity
+                    </Paragraph>
+                    <Paragraph>
+                        Property representing the
+                        <Hyperlink NavigateUri="https://learn.microsoft.com/ru-ru/dotnet/api/system.io.ports.serialport.parity?view=dotnet-plat-ext-7.0">
+                            parity protocol
+                        </Hyperlink> of the serial port.
+                    </Paragraph>
+                </RichTextBlock>
+
+            </Grid>
+
+
+            <Grid Margin="5" CornerRadius="10" Background="{ThemeResource CardBackgroundFillColorDefault}">
+                <TextBox x:Name="DataBits" HorizontalAlignment="Left" Header="Data bits" Margin="10, 10, 150, 10" KeyDown="TextBox_TextChanged"/>
+
+                <Rectangle VerticalAlignment="Stretch" HorizontalAlignment="Left" Margin="190, 0, 0, 0" Width="0.5px" Stroke="{ThemeResource CardBackgroundFillColorSecondary}"/>
+
+                <RichTextBlock HorizontalAlignment="Left" Margin="200, 10, 10, 10" TextWrapping="WrapWholeWords" Width="350">
+
+                    <Paragraph FontSize="20" FontWeight="Bold">
+                        Data bits
+                    </Paragraph>
+                    <Paragraph>
+                        Set default bit count in byte for serial port.
+                    </Paragraph>
+                    <Paragraph>
+                        <Hyperlink NavigateUri="https://learn.microsoft.com/ru-ru/dotnet/api/system.io.ports.serialport.databits?view=dotnet-plat-ext-7.0">
+                            Data bits
+                        </Hyperlink>
+                    </Paragraph>
+                </RichTextBlock>
+
+            </Grid>
+
+            <Grid Margin="5" CornerRadius="10" Background="{ThemeResource CardBackgroundFillColorDefault}">
+
+                <ComboBox x:Name="HandshakeComboBox" HorizontalAlignment="Left" Header="Handshake" Margin="10, 10, 150, 10" SelectionChanged="HandshakeComboBox_SelectionChanged"/>
+
+                <Rectangle VerticalAlignment="Stretch" HorizontalAlignment="Left" Margin="190, 0, 0, 0" Width="0.5px" Stroke="{ThemeResource CardBackgroundFillColorSecondary}"/>
+
+                <RichTextBlock HorizontalAlignment="Left" Margin="200, 10, 10, 10" TextWrapping="WrapWholeWords" Width="350">
+
+                    <Paragraph FontSize="20" FontWeight="Bold">
+                        Handshake
+                    </Paragraph>
+                    <Paragraph>
+                        Property representing the
+                        <Hyperlink NavigateUri="https://learn.microsoft.com/ru-ru/dotnet/api/system.io.ports.serialport.handshake?view=dotnet-plat-ext-7.0">
+                            handshake
+                        </Hyperlink> protocols of read/write for serial port.
+                    </Paragraph>
+                </RichTextBlock>
+
+            </Grid>
+
+            <Button Style="{StaticResource AccentButtonStyle}" Click="SaveButtonClicked" Margin="0, 30, 10, 0" Grid.Row="1" HorizontalAlignment="Right">
+                <Button.KeyboardAccelerators>
+                    <KeyboardAccelerator Key="S" Modifiers="Control"/>
+                </Button.KeyboardAccelerators>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Save Config" Margin="0, 0, 10, 0"/>
+                    <FontIcon Glyph="&#xE74E;"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

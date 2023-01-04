@@ -1,0 +1,24 @@
+<Page
+    x:Class="ArduinoClient.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ArduinoClient"
+    
+    xmlns:pages="using:ArduinoClient.Pages"
+    
+    xmlns:ui="using:Microsoft.UI.Xaml.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource SystemControlBaseLowAcrylicWindowBrush}">
+
+    <ui:Pivot Margin="10, 10, 0, -5" FontSize="15" Padding="0">
+        <ui:PivotItem Margin="20" Header="Test -> Write">
+            <pages:PivotItemMain/>
+        </ui:PivotItem>
+        
+        <ui:PivotItem Margin="20" Header="Port Settings">
+            <pages:SerialPortSettings/>
+        </ui:PivotItem>
+    </ui:Pivot>
+</Page>
