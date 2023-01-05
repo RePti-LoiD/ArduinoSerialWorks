@@ -5,12 +5,14 @@ using WinRT.Interop;
 using Microsoft.UI;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
+using ArduinoClient.Data;
 
 namespace ArduinoClient
 {
     public sealed partial class MainWindow : Window
     {
         public AppWindow appWindow;
+        public static SerialPortConfig PortConfig;
 
         public MainWindow()
         {
@@ -18,6 +20,8 @@ namespace ArduinoClient
 
             Activated += (x, y) =>
             {
+                PortConfig = SerialPortConfigHandler.TryRestoreConfig();
+
                 IntPtr winHandle = WindowNative.GetWindowHandle(this);
                 WindowId winId = Win32Interop.GetWindowIdFromWindow(winHandle);
 

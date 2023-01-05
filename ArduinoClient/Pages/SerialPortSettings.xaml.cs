@@ -2,7 +2,9 @@ using ArduinoClient.Data;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System;
+using System.Collections.Generic;
 using System.IO.Ports;
+using System.Linq;
 using Windows.ApplicationModel.DataTransfer;
 
 namespace ArduinoClient.Pages
@@ -20,11 +22,18 @@ namespace ArduinoClient.Pages
 
         private void PageLoaded(object sender, RoutedEventArgs e)
         {
-            portConfig = SerialPortConfigSerialization.TryRestoreConfig();
+            SetValues();
+        }
 
-            PortName.PlaceholderText = portConfig.PortName;
+        private void SetValues()
+        {
+            portConfig = MainWindow.PortConfig;
+
+            PortNames.ItemsSource = SerialPort.GetPortNames().ToList() ?? new List<string>() { "None" };
+            PortNames.SelectedIndex = 0;
+
             BaudRate.PlaceholderText = portConfig.BaudRate.ToString();
-            
+
             ParityComboBox.ItemsSource = Enum.GetValues(typeof(Parity));
             ParityComboBox.SelectedItem = portConfig.Parity;
 
@@ -36,10 +45,10 @@ namespace ArduinoClient.Pages
 
         private void SaveButtonClicked(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
         {
-            SerialPortConfigSerialization.SaveConfig(portConfig);
+            SerialPortConfigHandler.SaveConfig(portConfig);
 
             DataPackage dataPackage = new DataPackage();
-            dataPackage.SetText(SerialPortConfigSerialization.JsonDataPath);
+            dataPackage.SetText(SerialPortConfigHandler.JsonDataPath);
 
             Clipboard.SetContent(dataPackage);
         }
@@ -49,10 +58,6 @@ namespace ArduinoClient.Pages
             if (e.Key == Windows.System.VirtualKey.Enter && sender is TextBox textBox)
                 switch (textBox.Name)
                 {
-                    case nameof(PortName):
-                        portConfig.PortName = textBox.Text;
-                        break;
-
                     case nameof(BaudRate):
                         portConfig.BaudRate = int.Parse(textBox.Text);
                         break;
@@ -71,6 +76,16 @@ namespace ArduinoClient.Pages
         private void HandshakeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             portConfig.Handshake = (Handshake)(sender as ComboBox).SelectedItem;
+        }
+
+        private void PortName_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            portConfig.PortName = (sender as ComboBox).SelectedItem.ToString();
+        }
+
+        private void UpdateButtonClick(object sender, RoutedEventArgs e)
+        {
+            SetValues();
         }
     }
 }

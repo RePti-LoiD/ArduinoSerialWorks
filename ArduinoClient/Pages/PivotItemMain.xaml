@@ -13,8 +13,8 @@
             <TextBlock FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" Margin="20">Test Serial Write</TextBlock>
 
             <ui:StackPanel CornerRadius="15" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Background="{ThemeResource CardBackgroundFillColorDefault}">
-                <ToggleButton HorizontalAlignment="Center" x:Name="myButton" Click="TryStartRead" Margin="10" Content="Start Write"/>
-                <ToggleButton x:Name="toggle" Click="toggle_Click" HorizontalAlignment="Center" Content="Toggle 13 Pin"></ToggleButton>
+                <ToggleButton HorizontalAlignment="Center" x:Name="myButton" Click="TryStartRead" Margin="10" Content="Toggle Write"/>
+                <ToggleButton x:Name="toggle" Click="ToggleButtonClicked" HorizontalAlignment="Center" Content="Toggle 13 Pin"></ToggleButton>
                 
                 <NavigationViewItemSeparator/>
                 <StackPanel Orientation="Horizontal">

@@ -4,8 +4,6 @@ namespace ArduinoClient.Data
 {
     public class SerialPortConfig
     {
-        private static SerialPortConfig instance;
-
         private string portName = "COM 3";
         private int baudRate = 9600;
         private Parity parity = Parity.Space;
@@ -18,28 +16,6 @@ namespace ArduinoClient.Data
         public int DataBits { get => dataBits; set => dataBits = value; }
         public Handshake Handshake { get => handshake; set => handshake = value; }
 
-        public static SerialPortConfig InitSerialPortConfig()
-        {
-            instance ??= new SerialPortConfig();
-
-            return instance;
-        }
-
-        public static SerialPortConfig SetNewConfig(SerialPortConfig serialPortConfig)
-        {
-            if (instance == null)
-            {
-                instance = new SerialPortConfig();
-            }
-
-            instance.PortName = serialPortConfig.PortName;
-            instance.BaudRate = serialPortConfig.BaudRate;
-            instance.Parity = serialPortConfig.Parity;
-            instance.DataBits = serialPortConfig.DataBits;
-            instance.Handshake = serialPortConfig.Handshake;
-
-            return instance;
-        }
 
         public SerialPort BuildSerialPort() =>  new SerialPort()
                                                 {
@@ -50,6 +26,6 @@ namespace ArduinoClient.Data
                                                     Handshake = Handshake
                                                 };
 
-        private SerialPortConfig() { }
+        public SerialPortConfig() { }
     }
 }
