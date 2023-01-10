@@ -1,0 +1,20 @@
+<UserControl
+    x:Class="ArduinoClient.Pages.ConstructorNode"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ArduinoClient.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Width="270" Margin="5">
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Canvas.ZIndex="-1">
+            <TextBlock Opacity="0.1" Text="{x:Bind NodeIndex}" FontSize="125" FontWeight="Bold"/>
+        </Grid>
+
+        <StackPanel Background="{StaticResource CardBackgroundFillColorSecondary}" CornerRadius="5">
+            <TimePicker x:Name="StartTime" MinuteIncrement="1" HorizontalAlignment="Left" Header="Начало урока" VerticalAlignment="Top" Margin="10" SelectedTimeChanged="StartTimeChanged"/>
+            <TimePicker x:Name="EndTime"  MinuteIncrement="1" HorizontalAlignment="Left" Header="Конец урока"  VerticalAlignment="Top" Margin="10" SelectedTimeChanged="EndTimeChanged"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

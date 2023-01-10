@@ -5,7 +5,6 @@ using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Input;
 using System;
 using System.IO.Ports;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace ArduinoClient.Pages
@@ -13,8 +12,7 @@ namespace ArduinoClient.Pages
     public sealed partial class PivotItemMain : Page, IDisposable
     {
         private SerialPort serialPort;
-
-        private bool toggleButtonState;
+        private int sliderValue = 0;
 
         public PivotItemMain()
         {
@@ -22,52 +20,35 @@ namespace ArduinoClient.Pages
 
             Loaded += (x, y) =>
             {
-                serialPort = MainWindow.PortConfig.BuildSerialPort();
+                serialPort = SettingsWindow.PortConfig.BuildSerialPort();
 
                 SerialPortConfigHandler.OnConfigChanged += (x) =>
                 {
                     serialPort.Close();
-                    toggle.IsChecked = false;
 
                     serialPort = x.BuildSerialPort();
-
-                    PackageStateText.Text = serialPort.PortName;
                 };
             };
         }
 
         private async void TryStartRead(object sender, RoutedEventArgs e)
         {
-            try
+            if ((bool)(sender as ToggleButton).IsChecked)
             {
-                if ((bool)(sender as ToggleButton).IsChecked)
-                {
-                    await Task.Run(() => WritePortAsync());
-                }
-                else
-                {
-                    serialPort.Close();
-                }
+                //await Task.Run(() => WritePortAsync(serialPort));
+
+                (Application.Current as App).ActivateSheduleConstructor();
             }
-            catch (Exception ex)
+            else
             {
-                (sender as ToggleButton).IsChecked = false;
-
-                ContentDialog dialog = new ContentDialog();
-
-                dialog.XamlRoot = MainPage.instance.XamlRoot;
-                dialog.Title = ex.Message;
-                dialog.PrimaryButtonText = "Ok";
-                dialog.DefaultButton = ContentDialogButton.Primary;
-                dialog.Content = ex.StackTrace;
-
-                SerialPortConfigHandler.StartDialogAsync(dialog);
+                serialPort.Close();
             }
         }
 
         private void SliderNewValue(object sender, RangeBaseValueChangedEventArgs e)
         {
             PackageStateText.Text = $"Package sent: {e.NewValue}";
+            sliderValue = (int)e.NewValue;
         }
 
         private void TextBox_KeyDown(object sender, KeyRoutedEventArgs e)
@@ -89,37 +70,21 @@ namespace ArduinoClient.Pages
 
         public void Dispose()
         {
+            serialPort?.Close();
             serialPort?.Dispose();
         }
 
-        //TODO: Добавить в настройки частоту записи в порт в МС.
-        private void WritePortAsync()
+        private void WritePortAsync(SerialPort serialPort)
         {
             serialPort.Open();
 
             while (true)
             {
-                if (serialPort.IsOpen)
-                {
-                    byte data = 0;
-                    if (toggleButtonState)
-                    {
-                        data = 1;
-                    }
-
-                    serialPort.WriteLine(Convert.ToBoolean(data).ToString() + ".");
-                }
+                serialPort.Write(sliderValue + ".");
 
                 if (!serialPort.IsOpen)
                     break;
-
-                Thread.Sleep(1000);
             }
-        }
-
-        private void ToggleButtonClicked(object sender, RoutedEventArgs e)
-        {
-            toggleButtonState = (bool)(sender as ToggleButton).IsChecked;
         }
     }
 }

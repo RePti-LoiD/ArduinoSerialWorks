@@ -5,6 +5,7 @@
     xmlns:local="using:ArduinoClient"
     
     xmlns:pages="using:ArduinoClient.Pages"
+    xmlns:shedule="using:ArduinoClient.Pages.SheduleConstructor"
     
     xmlns:ui="using:Microsoft.UI.Xaml.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -16,7 +17,7 @@
         <ui:PivotItem Margin="20" Header="Test -> Write">
             <pages:PivotItemMain/>
         </ui:PivotItem>
-        
+
         <ui:PivotItem Margin="20" Header="Port Settings">
             <pages:SerialPortSettings/>
         </ui:PivotItem>

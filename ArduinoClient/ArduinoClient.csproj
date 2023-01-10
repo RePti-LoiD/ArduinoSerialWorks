@@ -10,9 +10,12 @@
     <UseWinUI>true</UseWinUI>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="ConstructorWindow.xaml" />
     <None Remove="MainPage.xaml" />
-    <None Remove="Pages\PivotItemMain.xaml" />
-    <None Remove="Pages\SerialPortSettings.xaml" />
+    <None Remove="Pages\BlankWindow1.xaml" />
+    <None Remove="Pages\ConstructorNode.xaml" />
+    <None Remove="Pages\SheduleConstructor\DayShedulePanel.xaml" />
+    <None Remove="SettingsWindow.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,6 +24,36 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
     <PackageReference Include="System.IO.Ports" Version="7.0.0" />
     <Manifest Include="$(ApplicationManifest)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Pages\BlankWindow1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Pages\ConstructorNode.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Pages\SheduleConstructor\DayShedulePanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="SettingsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="ConstructorWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
   <ItemGroup>
@@ -37,6 +70,12 @@
 
   <ItemGroup>
     <Page Update="Pages\MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Pages\SheduleConstructor\SheduleCtor.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

@@ -4,16 +4,30 @@ namespace ArduinoClient
 {
     public partial class App : Application
     {
+        public SettingsWindow settingsWindow;
+        public ConstructorWindow constructorWindow;
+
         public App()
         {
             InitializeComponent();
         }
+        
         protected override void OnLaunched(LaunchActivatedEventArgs args)
         {
-            m_window = new MainWindow();
-            m_window.Activate();
+            settingsWindow = new SettingsWindow();
+            constructorWindow = new ConstructorWindow();
+
+            settingsWindow.Activate();
         }
 
-        private Window m_window;
+        public void ActivateSheduleConstructor()
+        {
+            constructorWindow.Activate();
+        }
+
+        public void DeactivateSheduleConstructor()
+        {
+            constructorWindow.Close();
+        }
     }
 }

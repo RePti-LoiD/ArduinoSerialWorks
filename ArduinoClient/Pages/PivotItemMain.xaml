@@ -9,13 +9,12 @@
     xmlns:ui="using:Microsoft.UI.Xaml.Controls">
 
     <ui:ScrollViewer>
-        <ui:StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-            <TextBlock FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" Margin="20">Test Serial Write</TextBlock>
+        <ui:StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" CornerRadius="20" Background="{ThemeResource CardBackgroundFillColorDefault}">
+            <TextBlock FontSize="20" FontWeight="Bold" Margin="0, 20, 0, 20" HorizontalAlignment="Center" TextWrapping="Wrap">Система автоматизации звонков</TextBlock>
 
-            <ui:StackPanel CornerRadius="15" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Background="{ThemeResource CardBackgroundFillColorDefault}">
-                <ToggleButton HorizontalAlignment="Center" x:Name="myButton" Click="TryStartRead" Margin="10" Content="Toggle Write"/>
-                <ToggleButton x:Name="toggle" Click="ToggleButtonClicked" HorizontalAlignment="Center" Content="Toggle 13 Pin"></ToggleButton>
-                
+            <ui:StackPanel Margin="10" CornerRadius="10" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Background="{ThemeResource CardBackgroundFillColorSecondary}">
+                <ToggleButton HorizontalAlignment="Center" x:Name="myButton" Click="TryStartRead" Margin="10" Content="Toggle Lighter"/>
+
                 <NavigationViewItemSeparator/>
                 <StackPanel Orientation="Horizontal">
                     <ui:Slider Header="Lighter intensity" x:Name="Slider" HorizontalAlignment="Center" ValueChanged="SliderNewValue" Minimum="0" Maximum="255" Margin="20" Width="200"/>
@@ -23,10 +22,6 @@
                 </StackPanel>
 
                 <ui:TextBlock x:Name="PackageStateText" HorizontalAlignment="Center" FontWeight="Light" Margin="0, 0, 0, 20"/>
-
-                <Border CornerRadius="100" Width="125" Margin="20">
-                    <Image Source="https://github.com/RePti-LoiD/GachiPage/blob/main/HtmlCssGachiPage/van.jpg?raw=true"/>
-                </Border>
             </ui:StackPanel>
         </ui:StackPanel>
     </ui:ScrollViewer>

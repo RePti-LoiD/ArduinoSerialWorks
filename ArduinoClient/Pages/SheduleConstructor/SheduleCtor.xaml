@@ -1,0 +1,28 @@
+<Page
+    x:Class="ArduinoClient.Pages.SheduleConstructor.SheduleCtor"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ArduinoClient.Pages.SheduleConstructor"
+    xmlns:local1="using:ArduinoClient.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" 
+    Background="{ThemeResource SystemControlBaseLowAcrylicWindowBrush}">
+
+    <Grid>
+        <Button VerticalAlignment="Top" Canvas.ZIndex="1" HorizontalAlignment="Center" x:Name="PortStatus" Content="Send Shedule" CornerRadius="0, 0, 10, 10" Style="{ThemeResource AccentButtonStyle}" FontSize="15" Click="SendShedule" FontWeight="Bold"/>
+        <ScrollViewer HorizontalScrollMode="Enabled" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible">
+
+            <StackPanel Margin="10" Orientation="Vertical" x:Name="Shedule">
+
+                <local:DayShedulePanel DayName="Понедельник"/>
+                <local:DayShedulePanel DayName="Вторник"/>
+                <local:DayShedulePanel DayName="Среда"/>
+                <local:DayShedulePanel DayName="Четверг"/>
+                <local:DayShedulePanel DayName="Пятница"/>
+                <local:DayShedulePanel DayName="Суббота"/>
+                
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

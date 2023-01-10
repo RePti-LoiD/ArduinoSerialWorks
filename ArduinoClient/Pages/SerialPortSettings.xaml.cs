@@ -27,10 +27,10 @@ namespace ArduinoClient.Pages
 
         private void SetValues()
         {
-            portConfig = MainWindow.PortConfig;
+            portConfig = SettingsWindow.PortConfig;
 
             PortNames.ItemsSource = SerialPort.GetPortNames().ToList() ?? new List<string>() { "None" };
-            PortNames.SelectedIndex = 0;
+            PortNames.SelectedIndex = SerialPort.GetPortNames().ToList().IndexOf(portConfig.PortName);
 
             BaudRate.PlaceholderText = portConfig.BaudRate.ToString();
 
